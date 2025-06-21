@@ -9,6 +9,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const port = process.env.PORT || 3000;
+
+// Imports
+const connectToDatabase = require('./db');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -37,5 +42,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+connectToDatabase();
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+})
 
 module.exports = app;

@@ -3,7 +3,7 @@ const { sequelize } = require('../db');
 const { DataTypes } = require('sequelize');
 
 
-const Task = sequelize.define('Tasks', {
+const Task = sequelize.define('Task', {
     content: {
         type:  DataTypes.STRING,
         validate:{

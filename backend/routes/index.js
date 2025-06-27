@@ -1,13 +1,19 @@
 var express = require('express');
 var router = express.Router();
+const body_parser = require('body-parser')
+const app = express();
+
+
+const Task =  require('./models')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET HELLO */
+app.use(express.json());
 
+/* GET HELLO */
 router.get('/hello', function(req, res, next){
   res.status(200).json({ message: 'Hello, World!' });
 })
@@ -16,15 +22,41 @@ router.get('/hello', function(req, res, next){
 
 // Testes de Requisição
 
-router.get('/todos', function(req, res, next){
-  res.status(200).json({ message: 'Todos List' });
+router.get('/todos', async(req, res, next) => {
+  const tasks = await Task.findAll();
+
+  res.status(200).json(tasks)
 })
 
-router.post('/todos', function(req, res, next){
-  
-})
+router.post('/todos', async (req, res, next) => {
+  const { content, description } = req.body;
 
-router.get('/todos/:id', function(req, res, next){
+  try {
+    const newTask = await Task.create({
+      content,
+      description
+    });
+
+    res.status(201).json(newTask); 
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao criar task', details: err.message });
+  }
+});
+
+
+router.get('/todos/:id', async (req, res, next) => {
+  const task = await Task.findOne({
+    where: {
+      id:req.params.id
+    },
+  })
+  try {
+    res.status(200).json(task)
+
+  } catch(err) {
+    res.status(500).json({error: 'Erro ao criar task', details: err.message})
+  }
+
 })
 
 router.post('/todos/:id',  function(req, res,  next){

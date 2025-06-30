@@ -7,8 +7,10 @@
 
   // Rota INDEX (Para o banco de dados)
   var apiRouter = require('./routes/api');
+  var index =  require('./models/index')
   // var usersRouter = require('./routes/users');
 
+  const { syncModels } = require('./models/index')
 
   // Ativando o EXPRESS
   var app = express();
@@ -16,6 +18,7 @@
 
   // BANCO DE DADOS
   const { connectToDatabase } = require('./config/db');
+  const { seedPanelStyles } = require('./models/seedData')
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));
@@ -47,13 +50,18 @@
     res.render('error');
   });
 
-  connectToDatabase();
+  connectToDatabase()
+  .then(async () => {
+    await syncModels();
+    await seedPanelStyles();
+    
 
-
-
-
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
   })
+  .catch(err => {
+    console.error('Erro ao conectar ao banco de dados: ', err);
+  });
 
-  module.exports = app;
+module.exports = app;

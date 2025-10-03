@@ -1,0 +1,74 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 5.5rem;
+    padding: 0 4rem;
+    background-color: var(--mainColor);
+    color: var(--textColor);
+    position: relative;
+  }
+  
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+    background: var(--mainColor);
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+    gap: 1.5rem;
+    font-size: 1.4rem;
+  }
+  
+  nav.responsive_nav {
+    transform: translateX(0);
+  }
+  
+  nav a {
+    color: var(--textColor);
+    text-decoration: none;
+    font-size: 1.6rem;
+    margin: 0 1.5rem;
+    transition: 0.3s;
+  }
+  
+  nav a:hover {
+    color: var(--secondaryColor);
+    font-size: 1.8rem;
+  }
+  
+  .nav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .6rem;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 1rem;
+    background: var(--textColor);
+    color: var(--mainColor);
+    cursor: pointer;
+    z-index: 1;
+    transition: background 0.3s;
+  }
+  
+  .nav-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-icon-wrapper.clicked {
+    animation: rotateIcon 1s ease;
+  }
+  
+  @keyframes rotateIcon {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }

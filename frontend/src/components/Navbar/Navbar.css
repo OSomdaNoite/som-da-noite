@@ -2,8 +2,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 5.5rem;
-    padding: 0 4rem;
+    padding: 1rem 4rem;
+    height: 10vh;
     background-color: var(--mainColor);
     color: var(--textColor);
     position: relative;
@@ -24,6 +24,7 @@ header {
     transition: transform 0.5s ease;
     gap: 1.5rem;
     font-size: 1.4rem;
+    z-index: 3;
   }
   
   nav.responsive_nav {
@@ -54,7 +55,7 @@ header {
     background: var(--textColor);
     color: var(--mainColor);
     cursor: pointer;
-    z-index: 1;
+    z-index: 4;
     transition: background 0.3s;
   }
   
@@ -72,3 +73,27 @@ header {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+
+.player-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.status {
+  font-size: 0.8rem;
+  opacity: .9;
+  color: var(--secondaryColor);
+}
+
+.album-image {
+  max-width: 5rem;
+  max-height: 5rem;
+  border-radius: 1rem;
+}

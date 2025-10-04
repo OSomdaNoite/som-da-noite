@@ -1,0 +1,94 @@
+.center-area {
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.song-info {
+    margin-top: 2rem;
+    position: relative;
+    color: var(--textColor);
+    font-size: 2rem;
+}
+
+.background-overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.center-area::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    z-index: -2;
+}
+
+.pause-hover {
+    width: 100%;
+    max-width: 30rem;
+    position: relative;
+}
+
+.pause-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border-radius: 100%;
+}
+
+.pause-hover:hover::before {
+    opacity: 1;
+}
+
+.hovered {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--mainColor);
+    border-radius: 100%;
+    width: 6rem;
+    height: 6rem;
+    font-size: 3rem;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: var(--textColor);
+    cursor: pointer;
+}
+
+.pause-hover:hover .hovered {
+    opacity: 1;
+}
+
+.album-cover {
+    width: 100%;
+    border-radius: 100%;
+    display: block;
+}

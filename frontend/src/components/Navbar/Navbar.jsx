@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { FaPlay, FaPause, FaBars, FaTimes } from 'react-icons/fa';
 import useAudioPlayer from '../../hooks/useAudioPlayer';  // Path to the useAudioPlayer hook
 
+import { Link } from 'react-router-dom';
+
 import mockAudio from '../../assets/mock.mp3'; // Adjust path as needed
 
 import './Navbar.css';
@@ -72,10 +74,10 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName }) => {
       </button>
 
       <nav className={isNavOpen ? 'responsive_nav' : ''}>
-        <a href="/#">Página Inicial</a>
-        <a href="/#">Programação</a>
-        <a href="/#">Sobre</a>
-        <a href="/#">Contato</a>
+        <Link to="/home">Página Inicial</Link>
+        <Link to="/history">Programação</Link>
+        <Link to="/about">Sobre</Link>
+        <Link to="/contact">Contato</Link>
       </nav>
 
       <audio ref={audioRef} />

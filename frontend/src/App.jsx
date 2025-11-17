@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css'
 
 import albumImage from './assets/mock.jpg'
 
-import Navbar from './components/Navbar/Navbar'
-
 // Pages
 import Home from './pages/Home/Home'
+import About from './pages/About/About'
+import PlayHistory from './pages/PlayHistory/PlayHistory'
+import Contact from './pages/Contact/Contact'
 
 function App() {
 
@@ -51,10 +53,12 @@ useEffect(() => {
 }, []);
 
   return (
-    <>
-      <Navbar songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
-      <Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
-    </>
+    <Routes>
+      <Route path="/" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/history" element={<PlayHistory />} />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
   )
 }
 

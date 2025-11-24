@@ -5,6 +5,7 @@ import useAudioPlayer from '../../hooks/useAudioPlayer';  // Path to the useAudi
 import { Link } from 'react-router-dom';
 
 import mockAudio from '../../assets/mock.mp3'; // Adjust path as needed
+import mockPhoto from '../../assets/mock.jpg';
 
 import './Navbar.css';
 
@@ -74,6 +75,12 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName }) => {
       </button>
 
       <nav className={isNavOpen ? 'responsive_nav' : ''}>
+        <div className='user-data'>
+          <Link to={"/profile"}>
+            <img src={mockPhoto} />
+            <span>Usuário</span>
+          </Link>
+        </div>
         <Link to="/home">Página Inicial</Link>
         <Link to="/history">Programação</Link>
         <Link to="/about">Sobre</Link>

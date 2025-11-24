@@ -9,6 +9,7 @@ import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import PlayHistory from './pages/PlayHistory/PlayHistory'
 import Contact from './pages/Contact/Contact'
+import Profile from './pages/Profile/Profile'
 
 function App() {
 
@@ -55,6 +56,8 @@ useEffect(() => {
   return (
     <Routes>
       <Route path="/" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
+      <Route path="/home" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
+      <Route path="/profile" element={<Profile songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
       <Route path="/about" element={<About />} />
       <Route path="/history" element={<PlayHistory />} />
       <Route path="/contact" element={<Contact />} />

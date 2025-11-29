@@ -7,6 +7,7 @@ header {
     background-color: var(--mainColor);
     color: var(--textColor);
     position: relative;
+    box-shadow: 0 0 1rem .2rem #000;
   }
   
   nav {

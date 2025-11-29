@@ -1,8 +1,16 @@
 import React from 'react'
 
-const Contact = () => {
+// components
+import CenterArea from '../../components/CenterArea/CenterArea'
+import Navbar from '../../components/Navbar/Navbar'
+
+const Contact = ({ songTime, albumImage, artistName, songName, albumName }) => {
+  
   return (
-    <div>Contact</div>
+    <div>
+        <Navbar songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
+        <CenterArea songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
+    </div>
   )
 }
 

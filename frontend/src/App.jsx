@@ -58,9 +58,9 @@ useEffect(() => {
       <Route path="/" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
       <Route path="/home" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
       <Route path="/profile" element={<Profile songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/history" element={<PlayHistory />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/about" element={<About songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
+      <Route path="/history" element={<PlayHistory songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
+      <Route path="/contact" element={<Contact songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
     </Routes>
   )
 }

@@ -1,16 +1,15 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
-const DATABASE = process.env.DB_DATABASE;
-const USERNAME = process.env.DB_USERNAME;
+const DATABASE = process.env.DB_NAME;
+const USERNAME = process.env.DB_USER;
 const PASSWORD = process.env.DB_PASSWORD;
 const HOST = process.env.DB_HOST;
 
-console.log("Database Configurations:");
-console.log("Database:", DATABASE);
-console.log("Username:", USERNAME);
-console.log("Host:", HOST);
-
+console.log('database:', DATABASE);
+console.log('username:', USERNAME);
+console.log('password:', PASSWORD);
+console.log('host:', HOST);
 const sequelize = new Sequelize(DATABASE, USERNAME, PASSWORD, {
   host: HOST,
   port: process.env.DB_PORT || 5432,

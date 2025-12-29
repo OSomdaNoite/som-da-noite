@@ -102,16 +102,16 @@ header {
 
 .audio-canvas-navbar {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translateY(-50%);
   width: 100%;
-  height: 10rem;
+  height: 100%; /* usa a altura do header */
   pointer-events: none;
   z-index: 0;
   background: transparent;
-  opacity: .6;
+  opacity: 0.6;
 }
+
 
 .play-pause-btn {
   background: none;

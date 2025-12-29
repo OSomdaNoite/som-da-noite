@@ -5,9 +5,10 @@
 
 .about-info {
     color: var(--textColor);
-    padding: 10rem 5rem;
+    padding: 10% 10%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .img-radio {
@@ -18,4 +19,5 @@
 .about-text {
     max-width: 50vw;
     font-size: 1.6rem;
+    text-align: center;
 }

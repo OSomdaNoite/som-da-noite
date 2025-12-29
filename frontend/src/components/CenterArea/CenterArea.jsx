@@ -1,15 +1,9 @@
 import React, { useRef } from 'react';
 import { FaPause, FaPlay } from 'react-icons/fa';
-import useAudioPlayer from '../../hooks/useAudioPlayer'; // Adjust path if needed
-import mockAudio from '../../assets/mock.mp3';
 
 import './CenterArea.css';
 
-const CenterArea = ({ songTime, albumImage, artistName, songName, albumName }) => {
-  const canvasRef = useRef(null);
-
-  // Use the hook in "center" mode
-  const { isPlaying, togglePlay, audioRef } = useAudioPlayer(mockAudio, canvasRef, 'center');
+const CenterArea = ({ songTime, albumImage, artistName, songName, albumName, isPlaying, togglePlay, canvasRef }) => {
 
   return (
     <div className='center-area'>
@@ -27,8 +21,6 @@ const CenterArea = ({ songTime, albumImage, artistName, songName, albumName }) =
         width={800}
         height={300}
       />
-
-      <audio ref={audioRef} />
 
       <div className='background-overlay'></div>
 

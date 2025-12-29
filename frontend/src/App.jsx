@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
 
@@ -11,58 +11,73 @@ import PlayHistory from './pages/PlayHistory/PlayHistory'
 import Contact from './pages/Contact/Contact'
 import Profile from './pages/Profile/Profile'
 
+import useAudioPlayer from './hooks/useAudioPlayer';
+import mockAudio from './assets/mock.mp3';
+
+import Navbar from './components/Navbar/Navbar';
+
 function App() {
 
-  const [songTime, setSongTime] = useState('00:00 / 00:00');
+  const navbarCanvasRef = useRef(null)
+  const centerCanvasRef = useRef(null)
 
-  let artistName = "Artist Name"
-  let songName = "Song Name"
-  let albumName = "Album Name"
+  const artistName = "Artist Name"
+  const songName = "Song Name"
+  const albumName = "Album Name"
 
-  const updateTime = (tempo) => {
-    const [targetMinutes, targetSeconds] = tempo.split(":").map(Number);
-    let seconds = 0, minutes = 0;
-
-    let updateCronometer = (willZero) => {
-        let formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} / ${String(targetMinutes).padStart(2, '0')}:${String(targetSeconds).padStart(2, '0')}`;
-        setSongTime(formattedTime);
-
-        if (willZero) {
-            seconds = 0, minutes = 0;
-            updateCronometer();
-        }
-    }
-
-    const interval = setInterval(() => {
-        updateCronometer();
-
-        if (minutes === targetMinutes && seconds === targetSeconds + 1) {
-            clearInterval(interval);
-            updateCronometer(true);
-        }
-
-        seconds++;
-        if (seconds === 60) {
-            seconds = 0;
-            minutes++;
-        }
-    }, 1000);
-};
-
-useEffect(() => {
-  updateTime("3:30");
-}, []);
+  const { audioRef, isPlaying, togglePlay, songTime } = useAudioPlayer(mockAudio, [
+    { ref: navbarCanvasRef, mode: 'navbar' },
+    { ref: centerCanvasRef, mode: 'center' }
+  ]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-      <Route path="/home" element={<Home songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-      <Route path="/profile" element={<Profile songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-      <Route path="/about" element={<About songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-      <Route path="/history" element={<PlayHistory songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-      <Route path="/contact" element={<Contact songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />} />
-    </Routes>
+    <>
+      <Navbar
+        songTime={songTime}
+        isPlaying={isPlaying}
+        togglePlay={togglePlay}
+        albumImage={albumImage}
+        artistName={artistName}
+        songName={songName}
+        albumName={albumName}
+        canvasRef={navbarCanvasRef}
+      />
+
+      <Routes>
+        <Route path="/" element={
+          <Home
+            songTime={songTime}
+            isPlaying={isPlaying}
+            togglePlay={togglePlay}
+            albumImage={albumImage}
+            artistName={artistName}
+            songName={songName}
+            albumName={albumName}
+            centerCanvasRef={centerCanvasRef}
+          />
+        }/>
+        <Route path="/home" element={
+          <Home
+            songTime={songTime}
+            isPlaying={isPlaying}
+            togglePlay={togglePlay}
+            albumImage={albumImage}
+            artistName={artistName}
+            songName={songName}
+            albumName={albumName}
+            centerCanvasRef={centerCanvasRef}
+          />
+        }/>
+        <Route path="/profile" element={<Profile songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} isPlaying={isPlaying} togglePlay={togglePlay} />} />
+        <Route path="/about" element={<About songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} isPlaying={isPlaying} togglePlay={togglePlay} />} />
+        <Route path="/history" element={<PlayHistory songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} isPlaying={isPlaying} togglePlay={togglePlay} />} />
+        <Route path="/contact" element={<Contact songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} isPlaying={isPlaying} togglePlay={togglePlay} />} />
+      </Routes>
+
+      {/* ÚNICO AUDIO GLOBAL */}
+      <audio ref={audioRef} src={mockAudio} />
+    </>
   )
 }
 
-export default App
+export default App;

@@ -1,21 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaPlay, FaPause, FaBars, FaTimes } from 'react-icons/fa';
-import useAudioPlayer from '../../hooks/useAudioPlayer';  // Path to the useAudioPlayer hook
-
 import { Link } from 'react-router-dom';
 
-import mockAudio from '../../assets/mock.mp3'; // Adjust path as needed
 import mockPhoto from '../../assets/mock.jpg';
-
 import './Navbar.css';
 
-const Navbar = ({ songTime, albumImage, artistName, songName, albumName }) => {
+const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlaying, togglePlay, canvasRef }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const iconWrapperRef = useRef(null);
-  const canvasRef = useRef(null);  // Canvas for visual representation
-
-  // Use the custom audio hook
-  const { isPlaying, togglePlay, audioRef } = useAudioPlayer(mockAudio, canvasRef, 'navbar');
 
   const showNavbar = () => {
     setIsNavOpen(prev => !prev);
@@ -25,28 +17,22 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName }) => {
       iconWrapper.classList.remove('clicked');
       void iconWrapper.offsetWidth;
       iconWrapper.classList.add('clicked');
-
-      setTimeout(() => {
-        iconWrapper.classList.remove('clicked');
-      }, 1000);
+      setTimeout(() => iconWrapper.classList.remove('clicked'), 1000);
     }
   };
 
   useEffect(() => {
-    // Adjust canvas on window resize
     const resizeCanvas = () => {
+      if (!canvasRef?.current) return;
       const canvas = canvasRef.current;
-      if (!canvas) return;
       canvas.width = window.innerWidth;
-      canvas.height = 60;
+      const headerHeight = document.querySelector('header')?.offsetHeight || 60;
+      canvas.height = headerHeight;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, []);
+    return () => window.removeEventListener('resize', resizeCanvas);
+  }, [canvasRef]);
 
   return (
     <header>
@@ -62,11 +48,11 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName }) => {
         <div className="player-info">
           <span className="status">Tocando</span>
           <span>{artistName} - {songName} ({albumName})</span>
-          <span id="songTime">{songTime}</span>
+          <span>{songTime}</span>
         </div>
       </div>
 
-      <canvas ref={canvasRef} className="audio-canvas-navbar" />
+      <canvas ref={canvasRef} className='audio-canvas-navbar' />
 
       <button className="nav-btn" onClick={showNavbar}>
         <span className="nav-icon-wrapper" ref={iconWrapperRef}>
@@ -86,8 +72,6 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName }) => {
         <Link to="/about">Sobre</Link>
         <Link to="/contact">Contato</Link>
       </nav>
-
-      <audio ref={audioRef} />
     </header>
   );
 };

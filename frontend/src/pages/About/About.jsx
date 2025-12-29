@@ -8,7 +8,6 @@ const About = ({ songTime, albumImage, artistName, songName, albumName }) => {
   
   return (
     <div>
-        <Navbar songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
         <AboutArea />
     </div>
   )

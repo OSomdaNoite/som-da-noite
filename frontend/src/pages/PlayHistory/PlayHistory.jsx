@@ -8,7 +8,6 @@ const PlayHistory = ({ songTime, albumImage, artistName, songName, albumName }) 
   
   return (
     <div>
-        <Navbar songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
         <CenterArea songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
     </div>
   )

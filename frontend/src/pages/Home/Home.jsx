@@ -1,17 +1,18 @@
-import React from 'react'
+import CenterArea from '../../components/CenterArea/CenterArea';
 
-// components
-import CenterArea from '../../components/CenterArea/CenterArea'
-import Navbar from '../../components/Navbar/Navbar'
-
-const Home = ({ songTime, albumImage, artistName, songName, albumName }) => {
-  
+const Home = ({ songTime, isPlaying, togglePlay, albumImage, songName, artistName, albumName, centerCanvasRef }) => {
   return (
-    <div>
-        <Navbar songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
-        <CenterArea songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
-    </div>
-  )
-}
+    <CenterArea
+      songTime={songTime}
+      albumImage={albumImage}
+      artistName={artistName}
+      songName={songName}
+      albumName={albumName}
+      isPlaying={isPlaying}
+      togglePlay={togglePlay}
+      canvasRef={centerCanvasRef} // ⚡ conectado ao audioContext global
+    />
+  );
+};
 
-export default Home
+export default Home;

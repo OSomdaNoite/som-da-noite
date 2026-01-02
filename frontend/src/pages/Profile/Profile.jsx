@@ -1,14 +1,12 @@
 import React from 'react'
 
 // components
-import CenterArea from '../../components/CenterArea/CenterArea'
-import Navbar from '../../components/Navbar/Navbar'
+import ProfileArea from '../../components/ProfileArea/ProfileArea'
 
-const Profile = ({ songTime, albumImage, artistName, songName, albumName }) => {
-  
+const Profile = () => {
   return (
     <div>
-        <CenterArea songTime={songTime} albumImage={albumImage} artistName={artistName} songName={songName} albumName={albumName} />
+        <ProfileArea />
     </div>
   )
 }

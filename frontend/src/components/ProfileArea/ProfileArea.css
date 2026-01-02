@@ -1,0 +1,120 @@
+/* ====== CONTAINER GERAL ====== */
+.profile-bg {
+  background-color: var(--mainColorLight);
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  background-color: var(--mainColor);
+  border-radius: 50px;
+  width: calc(100% - 8rem);
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== USER INFO ====== */
+.user-info {
+  padding: 68px 110px 0;
+  display: flex;
+}
+
+.user-info img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20%;
+  margin-right: 90px;
+}
+
+.user-text-data {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* ====== FAVORITE SONGS ====== */
+.favorite-songs {
+  margin-top: 30px;
+  padding: 0 110px;
+}
+
+/* ====== SONG CARD ====== */
+.song-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--cardColor);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.song-card img {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 8px;
+}
+
+.song-card span {
+  margin-top: 10px;
+  color: var(--textColor);
+}
+
+/* ====== SWIPER BASE ====== */
+.swiper {
+  position: relative;
+  padding-bottom: 50px; /* espaço para paginação */
+}
+
+/* ====== PAGINAÇÃO ====== */
+.swiper-pagination {
+  position: relative;
+  margin-top: 25px;
+}
+
+.swiper-pagination-bullet {
+  background-color: var(--mainColorLight);
+  opacity: 1;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--secondaryColor);
+}
+
+/* ====== NAVEGAÇÃO (BOTÕES CIRCULARES) ====== */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 45px;
+  height: 45px;
+  background-color: var(--textColor);
+  border-radius: 50%;
+  transform: translateY(-120%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.swiper-button-prev {
+    left: calc(-45px - 20px); /* ajusta conforme necessário */
+  }
+  
+  .swiper-button-next {
+    right: calc(-45px - 20px);
+  }
+
+/* Hover: aumenta levemente o círculo */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    transform: translateY(-120%) scale(1.1);
+    transition: 0.2s ease;
+}
+
+.swiper-wrapper {
+    transition-timing-function: ease;
+  }

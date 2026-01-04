@@ -123,6 +123,12 @@ header {
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: .3s all;
+}
+
+.play-pause-btn:hover {
+  color: var(--secondaryColor);
+  scale: 1.1;
 }
 
 .user-data a {

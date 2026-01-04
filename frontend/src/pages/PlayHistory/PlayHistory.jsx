@@ -8,9 +8,9 @@ const PlayHistory = () => {
   });
 
   const historyData = [
-    { title: 'Song A', artist: 'Artist 1', duration: '3:45', time_played: '10:00 AM' },
-    { title: 'Song B', artist: 'Artist 2', duration: '4:20', time_played: '10:05 AM' },
-    { title: 'Song C', artist: 'Artist 3', duration: '2:50', time_played: '10:10 AM' },
+    { title: 'Song A', artist: 'Artist 1', duration: '3:45', time_played: '10:00' },
+    { title: 'Song B', artist: 'Artist 2', duration: '4:20', time_played: '10:05' },
+    { title: 'Song C', artist: 'Artist 3', duration: '2:50', time_played: '10:10' },
   ];
 
   const sortedData = useMemo(() => {
@@ -27,16 +27,46 @@ const PlayHistory = () => {
   }, [historyData, sortConfig]);
 
   const handleSort = (key) => {
-    setSortConfig((prev) => ({
-      key,
-      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
-    }));
+    setSortConfig((prev) => {
+      // Clique em uma coluna diferente
+      if (prev.key !== key) {
+        return { key, direction: 'asc' };
+      }
+  
+      // Mesmo campo: alterna estados
+      if (prev.direction === 'asc') {
+        return { key, direction: 'desc' };
+      }
+  
+      if (prev.direction === 'desc') {
+        return { key: null, direction: 'asc' }; // reset
+      }
+  
+      return { key, direction: 'asc' };
+    });
   };
+  
 
-  const getSortIndicator = (key) => {
-    if (sortConfig.key !== key) return '↕';
-    return sortConfig.direction === 'asc' ? '▲' : '▼';
+  const getSortIcon = (key) => {
+    if (sortConfig.key !== key) {
+      return (
+        <svg className="sort-icon neutral" viewBox="0 0 24 24">
+          <path d="M7 14l5 5 5-5H7zm0-4h10l-5-5-5 5z" />
+        </svg>
+      );
+    }
+  
+    return sortConfig.direction === 'asc' ? (
+      <svg className="sort-icon asc" viewBox="0 0 24 24">
+        <path d="M7 14l5-5 5 5H7z" />
+      </svg>
+    ) : (
+      <svg className="sort-icon desc" viewBox="0 0 24 24">
+        <path d="M7 10l5 5 5-5H7z" />
+      </svg>
+    );
   };
+  
 
   return (
     <div className="table-container">
@@ -45,18 +75,31 @@ const PlayHistory = () => {
       <table className="music-table">
         <thead>
           <tr>
-            <th onClick={() => handleSort('title')}>
-              Música <span>{getSortIndicator('title')}</span>
-            </th>
-            <th onClick={() => handleSort('artist')}>
-              Artista <span>{getSortIndicator('artist')}</span>
-            </th>
-            <th onClick={() => handleSort('duration')}>
-              Duração <span>{getSortIndicator('duration')}</span>
-            </th>
-            <th onClick={() => handleSort('time_played')}>
-              Hora <span>{getSortIndicator('time_played')}</span>
-            </th>
+          <th onClick={() => handleSort('title')}>
+            <div className="th-content">
+              Música
+              {getSortIcon('title')}
+            </div>
+          </th>
+          <th onClick={() => handleSort('artist')}>
+            <div className="th-content">
+              Música
+              {getSortIcon('artist')}
+            </div>
+          </th>
+          <th onClick={() => handleSort('duration')}>
+            <div className="th-content">
+              Duração
+              {getSortIcon('duration')}
+            </div>
+          </th>
+          <th onClick={() => handleSort('time_played')}>
+            <div className="th-content">
+              Horário da Reprodução
+              {getSortIcon('time_played')}
+            </div>
+          </th>
+
           </tr>
         </thead>
 

@@ -83,3 +83,28 @@
     }
   }
   
+  .th-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .sort-icon {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  
+  .sort-icon.asc {
+    transform: translateY(-1px);
+  }
+  
+  .sort-icon.desc {
+    transform: translateY(1px);
+  }
+  
+  .music-table th:hover .sort-icon {
+    transform: scale(1.15);
+  }

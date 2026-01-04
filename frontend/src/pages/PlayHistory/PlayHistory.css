@@ -1,0 +1,85 @@
+.table-container {
+    width: 100%;
+    height: 90vh;
+    background-color: var(--mainColorLight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .table-title {
+    color: var(--textColor);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .music-table {
+    max-width: 80%;
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--textColor);
+    background-color: #34495e;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  }
+  
+  .music-table th,
+  .music-table td {
+    padding: 14px 18px;
+    text-align: center;
+  }
+  
+  .music-table th {
+    background-color: var(--mainColor);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .music-table th:hover {
+    background-color: var(--secondaryColor);
+  }
+  
+  .music-table th span {
+    margin-left: 6px;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  
+  .music-table tr {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  
+  .music-table tr:nth-child(even) {
+    background-color: var(--mainColor);
+  }
+  
+  .music-table tr:nth-child(odd) {
+    background-color: var(--mainColorDark);
+  }
+  
+  .music-table tbody tr:hover {
+    background-color: var(--secondaryColor);
+    transform: scale(1.015);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    position: relative;
+  }
+  
+  .music-table td:first-child {
+    font-weight: bold;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .music-table {
+      max-width: 95%;
+    }
+  
+    .table-title {
+      font-size: 20px;
+    }
+  }
+  

@@ -68,7 +68,7 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
           </Link>
         </div>
         <Link to="/home">Página Inicial</Link>
-        <Link to="/history">Programação</Link>
+        <Link to="/history">Histórico de Reprodução</Link>
         <Link to="/about">Sobre</Link>
         <Link to="/contact">Contato</Link>
       </nav>

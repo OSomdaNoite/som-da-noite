@@ -6,11 +6,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 2% 2%;
   }
   
   .table-title {
     color: var(--textColor);
-    margin-bottom: 20px;
+    margin: 20px 0;
     font-size: 24px;
     font-weight: bold;
   }
@@ -108,3 +109,39 @@
   .music-table th:hover .sort-icon {
     transform: scale(1.15);
   }
+
+  .table-scroll {
+    width: 93.5%;
+    max-width: 93.5%;
+    flex: 1;
+    overflow-y: auto;
+    border-radius: 20px;
+  }
+  
+  /* Sticky header (optional but recommended) */
+  .music-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .table-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .table-scroll::-webkit-scrollbar-track {
+    background: var(--mainColorDark);
+    border-radius: 10px;
+  }
+  
+  .table-scroll::-webkit-scrollbar-thumb {
+    background: var(--mainColorLight);
+    border-radius: 10px;
+    border: 2px solid var(--mainColorDark);
+    transition: .2s all;
+  }
+  
+  .table-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--secondaryColor);
+  }
+  

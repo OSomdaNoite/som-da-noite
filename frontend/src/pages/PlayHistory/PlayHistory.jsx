@@ -72,18 +72,19 @@ const PlayHistory = () => {
     <div className="table-container">
       <h1 className="table-title">Histórico de Reprodução</h1>
 
+      <div className='table-scroll'>
       <table className="music-table">
         <thead>
           <tr>
           <th onClick={() => handleSort('title')}>
             <div className="th-content">
-              Música
+              Título
               {getSortIcon('title')}
             </div>
           </th>
           <th onClick={() => handleSort('artist')}>
             <div className="th-content">
-              Música
+              Criador
               {getSortIcon('artist')}
             </div>
           </th>
@@ -114,6 +115,7 @@ const PlayHistory = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };

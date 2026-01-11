@@ -9,16 +9,16 @@ import 'swiper/css/pagination';
 
 const ProfileArea = () => {
   const favoriteSongs = [
-    { id: 1, title: 'Música 1', cover: mock },
-    { id: 2, title: 'Música 2', cover: mock },
-    { id: 3, title: 'Música 3', cover: mock },
-    { id: 4, title: 'Música 4', cover: mock },
-    { id: 5, title: 'Música 5', cover: mock },
-    { id: 6, title: 'Música 6', cover: mock },
-    { id: 7, title: 'Música 7', cover: mock },
-    { id: 8, title: 'Música 8', cover: mock },
-    { id: 9, title: 'Música 9', cover: mock },
-    { id: 10, title: 'Música 10', cover: mock },
+    { id: 1, title: 'Faixa 1', cover: mock },
+    { id: 2, title: 'Faixa 2', cover: mock },
+    { id: 3, title: 'Faixa 3', cover: mock },
+    { id: 4, title: 'Faixa 4', cover: mock },
+    { id: 5, title: 'Faixa 5', cover: mock },
+    { id: 6, title: 'Faixa 6', cover: mock },
+    { id: 7, title: 'Faixa 7', cover: mock },
+    { id: 8, title: 'Faixa 8', cover: mock },
+    { id: 9, title: 'Faixa 9', cover: mock },
+    { id: 10, title: 'Faixa 10', cover: mock },
   ];
 
   const prevRef = useRef(null);
@@ -41,7 +41,7 @@ const ProfileArea = () => {
 
         <div className="favorite-songs">
           <span style={{ color: "var(--textColor)", fontSize: "30pt" }}>
-            Músicas Favoritas
+            Faixas Favoritas
           </span>
 
           <Swiper

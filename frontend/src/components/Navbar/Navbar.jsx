@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaPlay, FaPause, FaBars, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import mockPhoto from '../../assets/mock.jpg';
 import './Navbar.css';
@@ -8,6 +8,8 @@ import './Navbar.css';
 const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlaying, togglePlay, canvasRef }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const iconWrapperRef = useRef(null);
+
+  const location = useLocation();
 
   const showNavbar = () => {
     setIsNavOpen(prev => !prev);
@@ -47,7 +49,7 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
 
         <div className="player-info">
           <span className="status">Tocando</span>
-          <span>{artistName} - {songName} ({albumName})</span>
+          <span>{songName} - {artistName} ({albumName})</span>
           <span>{songTime}</span>
         </div>
       </div>
@@ -67,7 +69,9 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
             <span>Usuário</span>
           </Link>
         </div>
-        <Link to="/home">Página Inicial</Link>
+        {location.pathname !== '/home' && (
+          <Link to="/home">Página Inicial</Link>
+        )}
         <Link to="/history">Histórico de Reprodução</Link>
         <Link to="/about">Sobre</Link>
         <Link to="/contact">Contato</Link>

@@ -1,14 +1,33 @@
 import { useRef, useState, useEffect } from 'react';
 
 const useAudioPlayer = (audioSrc, canvases = []) => {
+
+  /* =======================
+     CONFIGURAÇÕES VISUAIS
+  ======================= */
+  const NAVBAR_SENSITIVITY = 1; // waveform horizontal
+  const CENTER_BAR_SENSITIVITY = .8; // barras centrais
+  const SMOOTHING = 0.85;
+
+  const getCSSVariable = (name) =>
+    getComputedStyle(document.documentElement)
+      .getPropertyValue(name)
+      .trim();
+
+  const secondaryColor = getCSSVariable('--secondaryColor');
+
   const audioRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const sourceRef = useRef(null);
   const animationIdRef = useRef(null);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [songTime, setSongTime] = useState('00:00 / 00:00');
 
+  /* =======================
+     DESENHOS
+  ======================= */
   const drawNavbarWaveform = (ctx, dataArray, canvas) => {
     const width = canvas.width;
     const height = canvas.height;
@@ -18,22 +37,21 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
 
     ctx.clearRect(0, 0, width, height);
 
-    const gradient = ctx.createLinearGradient(0, 0, width, 0);
-    gradient.addColorStop(0, 'rgba(219, 43, 57, 0.8)');
-    gradient.addColorStop(0.5, 'rgba(255, 100, 100, 0.9)');
-    gradient.addColorStop(1, 'rgba(219, 43, 57, 0.8)');
-
+    ctx.strokeStyle = secondaryColor;
     ctx.lineWidth = 3;
-    ctx.strokeStyle = gradient;
-    ctx.shadowColor = 'rgba(219, 43, 57, 0.6)';
+    ctx.shadowColor = secondaryColor;
     ctx.shadowBlur = 8;
     ctx.lineCap = 'round';
+
     ctx.beginPath();
 
     for (let i = 0; i < dataArray.length; i++) {
-      const v = dataArray[i] / 128 - 1;
+      const v =
+        (dataArray[i] / 128 - 1) * NAVBAR_SENSITIVITY;
+
       const x = i * sliceWidth;
       const y = centerY + v * maxWaveHeight;
+
       i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
     }
 
@@ -42,23 +60,30 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
 
   const drawCenterBars = (ctx, dataArray, canvas) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const barWidth = 4;
     const maxHeight = canvas.height * 0.4;
 
-    ctx.fillStyle = 'rgba(219, 43, 57, 0.6)';
-    ctx.shadowColor = 'rgba(219, 43, 57, 0.5)';
+    ctx.fillStyle = secondaryColor;
+    ctx.shadowColor = secondaryColor;
     ctx.shadowBlur = 5;
 
     dataArray.forEach((value, i) => {
-      const h = (value / 255) * maxHeight;
+      const h =
+        (value / 255) * maxHeight * CENTER_BAR_SENSITIVITY;
+
       const x = centerX + i * (barWidth + 2);
+
       ctx.fillRect(x, centerY - h, barWidth, h * 2);
       ctx.fillRect(centerX - (x - centerX), centerY - h, barWidth, h * 2);
     });
   };
 
+  /* =======================
+     AUDIO SETUP
+  ======================= */
   const setupAudio = () => {
     if (!audioRef.current || audioContextRef.current) return;
 
@@ -66,9 +91,11 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     const analyser = audioContext.createAnalyser();
     const source = audioContext.createMediaElementSource(audioRef.current);
 
+    analyser.fftSize = 256;
+    analyser.smoothingTimeConstant = SMOOTHING;
+
     source.connect(analyser);
     analyser.connect(audioContext.destination);
-    analyser.fftSize = 256;
 
     audioContextRef.current = audioContext;
     analyserRef.current = analyser;
@@ -77,6 +104,9 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     animate();
   };
 
+  /* =======================
+     ANIMAÇÃO
+  ======================= */
   const animate = () => {
     if (!analyserRef.current) return;
 
@@ -89,20 +119,30 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
       const ctx = canvas.getContext('2d');
       const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-      if (mode === 'navbar') analyser.getByteTimeDomainData(dataArray);
-      if (mode === 'center') analyser.getByteFrequencyData(dataArray);
+      if (mode === 'navbar') {
+        analyser.getByteTimeDomainData(dataArray);
+        drawNavbarWaveform(ctx, dataArray, canvas);
+      }
 
-      if (mode === 'navbar') drawNavbarWaveform(ctx, dataArray, canvas);
-      if (mode === 'center') drawCenterBars(ctx, dataArray, canvas);
+      if (mode === 'center') {
+        analyser.getByteFrequencyData(dataArray);
+        drawCenterBars(ctx, dataArray, canvas);
+      }
     });
 
     animationIdRef.current = requestAnimationFrame(animate);
   };
 
+  /* =======================
+     CONTROLES
+  ======================= */
   const togglePlay = async () => {
     if (!audioRef.current) return;
+
     if (!audioContextRef.current) setupAudio();
-    if (audioContextRef.current.state === 'suspended') await audioContextRef.current.resume();
+    if (audioContextRef.current.state === 'suspended') {
+      await audioContextRef.current.resume();
+    }
 
     if (isPlaying) {
       audioRef.current.pause();
@@ -113,16 +153,21 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     }
   };
 
+  /* =======================
+     TEMPO DA MÚSICA
+  ======================= */
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const format = (time) =>
+      `${String(Math.floor(time / 60)).padStart(2, '0')}:${String(Math.floor(time % 60)).padStart(2, '0')}`;
+
     const updateTime = () => {
-      const current = audio.currentTime;
-      const duration = audio.duration || 0;
-      const format = (time) => `${String(Math.floor(time / 60)).padStart(2,'0')}:${String(Math.floor(time % 60)).padStart(2,'0')}`;
-      setSongTime(`${format(current)} / ${format(duration)}`);
-    }
+      setSongTime(
+        `${format(audio.currentTime)} / ${format(audio.duration || 0)}`
+      );
+    };
 
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('loadedmetadata', updateTime);
@@ -130,6 +175,7 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateTime);
+
       cancelAnimationFrame(animationIdRef.current);
       analyserRef.current?.disconnect();
       sourceRef.current?.disconnect();
@@ -137,7 +183,12 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     };
   }, [audioSrc]);
 
-  return { audioRef, isPlaying, togglePlay, songTime };
+  return {
+    audioRef,
+    isPlaying,
+    togglePlay,
+    songTime
+  };
 };
 
 export default useAudioPlayer;

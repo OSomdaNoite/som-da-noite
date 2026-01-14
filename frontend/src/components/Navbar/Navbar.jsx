@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FaPlay, FaPause, FaBars, FaTimes } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 
-import mockPhoto from '../../assets/mock.jpg';
+import radioPhoto from '../../assets/marca_ufc.png';
 import './Navbar.css';
 
 const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlaying, togglePlay, canvasRef }) => {
@@ -38,7 +38,9 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
 
   return (
     <header>
-      <h3>Logo</h3>
+      <Link to="/home">
+        <img src={radioPhoto} className='radio-photo' />
+      </Link>
 
       <div className="player-area">
         <button onClick={togglePlay} className="play-pause-btn" aria-label={isPlaying ? 'Pause' : 'Play'}>
@@ -65,7 +67,7 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
       <nav className={isNavOpen ? 'responsive_nav' : ''}>
         <div className='user-data'>
           <Link to={"/profile"}>
-            <img src={mockPhoto} />
+            <img src={radioPhoto} />
             <span>Usuário</span>
           </Link>
         </div>

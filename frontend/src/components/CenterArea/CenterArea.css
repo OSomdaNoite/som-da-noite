@@ -108,30 +108,3 @@
     height: 100%;
     pointer-events: none;
 }
-
-.progress-ring {
-    position: absolute;
-    inset: -12px; /* espaço para o anel */
-    pointer-events: none;
-  }
-  
-  .progress-bg {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.15);
-    stroke-width: 10;
-  }
-  
-  .progress-circle {
-    fill: none;
-    stroke: var(--mainColor);
-    stroke-width: 10;
-    stroke-linecap: round;
-  
-    /* 🔑 começa no topo e gira no sentido horário */
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-    transform-box: fill-box;
-  
-    transition: stroke-dashoffset 0.4s linear;
-  }
-  

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import mock from '../../assets/mock.jpg'
+import mock from '../../assets/marca_ufc.png'
 
 import './AboutArea.css'
 

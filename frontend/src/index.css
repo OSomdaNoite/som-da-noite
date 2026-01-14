@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap');
 
 :root {
-  --mainColor: #29335C;
-  --mainColorLight: #5767aa;
-  --secondaryColor: #db2b39;
+  --mainColor: #0060AC;
+  --mainColorLight: #4b98d6;
+  --secondaryColor: #D9B82B;
   --textColor: #eee;
-  --mainColorDark: #0c0e1a;
+  --mainColorDark: #001c33;
 }
 
 * {

@@ -10,7 +10,7 @@ const Home = ({ songTime, isPlaying, togglePlay, albumImage, songName, artistNam
       albumName={albumName}
       isPlaying={isPlaying}
       togglePlay={togglePlay}
-      canvasRef={centerCanvasRef} // ⚡ conectado ao audioContext global
+      canvasRef={centerCanvasRef}
     />
   );
 };

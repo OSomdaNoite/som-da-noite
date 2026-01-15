@@ -32,7 +32,7 @@ const ProfileArea = () => {
     <div className="profile-bg">
       <div className="profile-card">
         <div className="user-info">
-          <img src={albumCover} alt="user picture" />
+          <img src='https://freesvg.org/img/abstract-user-flat-3.png' alt="Ícone do Usuário" />
           <div className="user-text-data">
             <span style={{ color: 'var(--textColor)', fontSize: '30pt' }}>
               Nome do Usuário

@@ -1,0 +1,174 @@
+.auth-wrapper {
+    height: 90vh;
+    background-color: var(--mainColorLight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInBg 1s ease;
+  }
+  
+  .auth-card {
+    width: 380px;
+    background-color: var(--mainColor);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    animation: floatCard 6s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .auth-toggle {
+    position: relative;
+    display: flex;
+    background: var(--mainColorDark);
+    border-radius: 30px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  
+  .auth-toggle button {
+    flex: 1;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    color: var(--textColor);
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .auth-toggle button.active {
+    color: var(--mainColorDark);
+  }
+  
+  .auth-toggle .slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: var(--secondaryColor);
+    border-radius: 30px;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+  
+  .slider.login {
+    transform: translateX(0%);
+  }
+  
+  .slider.register {
+    transform: translateX(100%);
+  }
+  
+  .auth-form h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--textColor);
+    animation: slideDown 0.6s ease;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 22px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--mainColorDark);
+    color: var(--textColor);
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .input-group label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  
+  .input-group input:focus + label,
+  .input-group input:valid + label {
+    top: -8px;
+    font-size: 12px;
+    color: var(--secondaryColor);
+  }
+  
+  .submit-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: var(--secondaryColor);
+    color: var(--mainColorDark);
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    color: var(--secondaryColor);
+    background-color: var(--mainColor);
+    border: 2px solid var(--secondaryColor);
+  }
+
+  .submit-btn:active {
+    transform: translateY(2px);
+  }
+  
+  .fade-in {
+    animation: fadeInUp 0.6s ease;
+  }
+  
+  @keyframes fadeInBg {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes floatCard {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

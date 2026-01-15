@@ -1,6 +1,5 @@
 import React from 'react'
 
-// components
 import AboutArea from '../../components/AboutArea/AboutArea'
 
 const About = () => {

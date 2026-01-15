@@ -2,11 +2,8 @@ import { useRef, useState, useEffect } from 'react';
 
 const useAudioPlayer = (audioSrc, canvases = []) => {
 
-  /* =======================
-     CONFIGURAÇÕES VISUAIS
-  ======================= */
-  const NAVBAR_SENSITIVITY = 1; // waveform horizontal
-  const CENTER_BAR_SENSITIVITY = .8; // barras centrais
+  const NAVBAR_SENSITIVITY = 1;
+  const CENTER_BAR_SENSITIVITY = .8;
   const SMOOTHING = 0.85;
 
   const getCSSVariable = (name) =>
@@ -25,9 +22,6 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songTime, setSongTime] = useState('00:00 / 00:00');
 
-  /* =======================
-     DESENHOS
-  ======================= */
   const drawNavbarWaveform = (ctx, dataArray, canvas) => {
     const width = canvas.width;
     const height = canvas.height;
@@ -81,9 +75,6 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     });
   };
 
-  /* =======================
-     AUDIO SETUP
-  ======================= */
   const setupAudio = () => {
     if (!audioRef.current || audioContextRef.current) return;
 
@@ -104,9 +95,6 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     animate();
   };
 
-  /* =======================
-     ANIMAÇÃO
-  ======================= */
   const animate = () => {
     if (!analyserRef.current) return;
 
@@ -133,9 +121,6 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     animationIdRef.current = requestAnimationFrame(animate);
   };
 
-  /* =======================
-     CONTROLES
-  ======================= */
   const togglePlay = async () => {
     if (!audioRef.current) return;
 
@@ -153,9 +138,6 @@ const useAudioPlayer = (audioSrc, canvases = []) => {
     }
   };
 
-  /* =======================
-     TEMPO DA MÚSICA
-  ======================= */
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;

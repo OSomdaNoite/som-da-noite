@@ -1,0 +1,70 @@
+.admin-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+
+  width: 20vw;
+  min-width: 300px;
+  height: 100vh;
+
+  background-color: #2C2A3D;
+  color: var(--textAdmin);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  overflow-y: auto;
+
+}
+
+.admin-sidebar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-logo {
+  max-width: 70%;
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.admin-item {
+  font-weight: 700;
+  font-size: 30px;
+
+  color: var(--textAdmin);
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+
+  text-shadow: 0 0 5px rgba(0, 255, 246, 0.5);
+}
+
+.admin-item:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+  background-color: rgba(0, 255, 246, 0.1);
+  color: var(--textAdmin);
+}
+
+.admin-item:focus {
+  outline: 2px solid var(--textAdmin);
+  outline-offset: 2px;
+}

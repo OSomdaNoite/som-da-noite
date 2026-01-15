@@ -1,6 +1,5 @@
 import React from 'react'
 
-// components
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel'
 
 const Contact = ({ songTime, albumImage, artistName, songName, albumName }) => {

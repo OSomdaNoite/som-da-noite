@@ -1,4 +1,4 @@
-/* OVERLAY */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -9,7 +9,6 @@
   z-index: 1000;
 }
 
-/* MODAL BASE */
 .modal-content {
   background: var(--mainColorDark);
   padding: 28px;
@@ -22,7 +21,6 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* ANIMAÇÕES */
 .modal-enter {
   animation: modalIn 0.3s ease-out forwards;
 }
@@ -53,7 +51,6 @@
   }
 }
 
-/* FECHAR */
 .modal-close {
   position: absolute;
   top: 12px;
@@ -65,13 +62,11 @@
   cursor: pointer;
 }
 
-/* CORPO */
 .modal-body {
   display: flex;
   gap: 24px;
 }
 
-/* CAPA */
 .modal-cover {
   width: 180px;
   height: 180px;
@@ -79,7 +74,6 @@
   border-radius: 10px;
 }
 
-/* INFO */
 .modal-info {
   flex: 1;
   display: flex;
@@ -94,7 +88,6 @@
   column-gap: 32px;
 }
 
-/* TEXTOS */
 .label {
   display: block;
   font-size: 0.9rem;
@@ -112,7 +105,6 @@
 }
 
 
-/* BOTÃO PALINHA */
 .preview-button {
   margin-top: 10px;
   padding: 14px 18px;

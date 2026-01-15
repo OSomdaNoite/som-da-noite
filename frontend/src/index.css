@@ -6,6 +6,10 @@
   --secondaryColor: #D9B82B;
   --textColor: #eee;
   --mainColorDark: #001c33;
+
+  --backgroundAdmin: #2C2A3D;
+  --textAdmin: #00FFF6;
+  --adminAction: #FF6B6B;
 }
 
 * {

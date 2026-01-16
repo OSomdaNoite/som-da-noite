@@ -9,7 +9,7 @@ const AboutArea = () => {
     <div className='about-bg'>
         <div className='about-info'>
             <img className='img-radio' src={mock} alt="Imagem da Rádio" />
-            <p className='about-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores adipisci perferendis explicabo, exercitationem voluptatum nulla, corrupti placeat reiciendis sit ab id neque labore mollitia porro magni praesentium ex voluptatibus.</p>
+            <p className='about-text'>Texto padrão da página Sobre.</p>
         </div>
     </div>
   )

@@ -1,0 +1,42 @@
+.contact-bg {
+  background-color: var(--mainColorLight);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-content {
+  text-align: center;
+  max-width: 80vw;
+}
+
+.contact-content h1 {
+  color: var(--textColor);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-content p {
+  color: var(--textColor);
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Ícones */
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-icon svg {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.2s;
+}
+
+.contact-icon:hover svg {
+  transform: scale(1.2);
+}

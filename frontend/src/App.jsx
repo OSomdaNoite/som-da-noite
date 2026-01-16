@@ -68,11 +68,11 @@ function App() {
           }/>
 
           <Route path="/home" element={<Home {...{ songTime, isPlaying, togglePlay, albumImage, artistName, songName, albumName, centerCanvasRef }} />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/history" element={<PlayHistory />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/acessar" element={<Authentication />} />
+          <Route path="/perfil" element={<Profile />} />
+          <Route path="/sobre" element={<About />} />
+          <Route path="/historico" element={<PlayHistory />} />
+          <Route path="/contato" element={<Contact />} />
+          <Route path="/autenticar" element={<Authentication />} />
           <Route path="*" element={<Home {...{ songTime, isPlaying, togglePlay, albumImage, artistName, songName, albumName, centerCanvasRef }} />} />
         </Route>
 

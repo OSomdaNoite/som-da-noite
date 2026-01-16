@@ -64,9 +64,17 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
         </span>
       </button>
 
+      {isNavOpen && (
+
+      <div
+        className="nav-backdrop"
+        onClick={showNavbar}
+      />
+      )}
+
       <nav className={isNavOpen ? 'responsive_nav' : ''}>
         <div className='user-data'>
-          <Link to={"/profile"}>
+          <Link to={"/perfil"}>
             <img src='https://freesvg.org/img/abstract-user-flat-3.png' alt='Ícone de Usuário' />
             <span>Usuário</span>
           </Link>
@@ -74,9 +82,9 @@ const Navbar = ({ songTime, albumImage, artistName, songName, albumName, isPlayi
         {location.pathname !== '/home' && (
           <Link to="/home">Página Inicial</Link>
         )}
-        <Link to="/history">Histórico de Reprodução</Link>
-        <Link to="/about">Sobre</Link>
-        <Link to="/contact">Contato</Link>
+        <Link to="/historico">Histórico de Reprodução</Link>
+        <Link to="/sobre">Sobre</Link>
+        <Link to="/contato">Contato</Link>
       </nav>
     </header>
   );

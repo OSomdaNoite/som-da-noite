@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './ProfileArea.css';
-import albumCover from '../../assets/marca_ufc.png';
+import albumCover from '../../assets/marca_ufc_tv.jpg';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';

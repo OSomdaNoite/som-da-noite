@@ -15,7 +15,7 @@ const Admin = () => {
     mainColorDark: '#001c33'
   })
   const [contactEnabled, setContactEnabled] = useState(true)
-  const [contactText, setContactText] = useState("Fale conosco")
+  const [contactText, setContactText] = useState("Texto padrão da página Contato.")
   const [contactSocials, setContactSocials] = useState({
     facebook: true,
     instagram: true,
@@ -68,8 +68,11 @@ const Admin = () => {
   }
 
   const handleSave = () => {
-    console.log("Salvando configurações:", { colors, contactEnabled, contactText, contactSocials, socialLinks, aboutText })
-    alert("Configurações salvas!")
+    const confirmSave = window.confirm("Tem certeza que deseja salvar as mudanças?");
+    if (!confirmSave) return;
+  
+    console.log("Salvando configurações:", { colors, contactEnabled, contactText, contactSocials, socialLinks, aboutText });
+    alert("Configurações salvas!");
   }
 
   const togglePlay = () => setIsPlaying(prev => !prev)

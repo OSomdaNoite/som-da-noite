@@ -130,7 +130,7 @@ const TrackList = () => {
                     <span>{track.duration}</span>
                     <div style={{ marginTop: '5px', display: 'flex', gap: '10px' }}>
                       <button className="save-btn" style={{ padding: '5px 10px', fontSize: '0.85rem' }} onClick={() => handleEditClick(track)}>Editar</button>
-                      <button className="save-btn" style={{ padding: '5px 10px', fontSize: '0.85rem', backgroundColor: '#FF6B6B', color: '#fff' }} onClick={() => handleRemove(track.id)}>Remover</button>
+                      <button className="save-btn" style={{ padding: '5px 10px', fontSize: '0.85rem', backgroundColor: '#FF6B6B', color: 'var(--backgroundAdmin)' }} onClick={() => handleRemove(track.id)}>Remover</button>
                     </div>
                   </>
                 )}

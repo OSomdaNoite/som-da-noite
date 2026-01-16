@@ -22,7 +22,7 @@
     min-width: 400px;
     max-height: 90vh;
     overflow-y: auto;
-    background-color: #2C2A3D;
+    background-color: var(--backgroundAdmin);
     border-radius: 20px;
     padding: 30px 40px;
     display: flex;
@@ -227,7 +227,7 @@ textarea {
     padding: 6px 14px;
     font-size: 0.95rem;
     background-color: var(--textAdmin);
-    color: #2C2A3D;
+    color: var(--backgroundAdmin);
     border: none;
     border-radius: 6px;
     cursor: pointer;
